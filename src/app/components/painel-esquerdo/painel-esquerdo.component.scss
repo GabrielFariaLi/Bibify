@@ -4,59 +4,81 @@ $h-spotify-logo: 120px;
 $h-menu-opcoes: 150px;
 $m-entre-menus: 10px;
 
-:host{
- max-width: 300px;
- min-height: 100vh;
- overflow-y: hidden;
- display: flex;
- flex-direction: column;
- background-color: $cor-fundo2;
- box-shadow: 1px 0px 15px #00000012;
+$h-footer-user: 60px;
 
- .menus {
-    flex:1;
+$h-desconsiderar: calc($h-spotify-logo + $h-menu-opcoes + $h-footer-user);
+
+:host {
+  max-width: 300px;
+  min-height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: $cor-fundo2;
+  box-shadow: 1px 0px 15px #00000012;
+
+  .menus {
+    flex: 1;
     flex-direction: column;
     height: 100%;
     padding: 0px 40px;
 
-    .image-container{
-        min-height: $h-spotify-logo;
+    .image-container {
+      min-height: $h-spotify-logo;
 
-        img {
-    width: 70%;            
-        }
+      img {
+        width: 70%;
+      }
     }
 
-    .menu-container{
+    .menu-container {
+      width: 100%;
+
+      &.flex {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &.opcoes {
+        min-height: $h-menu-opcoes;
+
+        flex-direction: column;
+        * {
+          margin-bottom: $m-entre-menus;
+        }
+      }
+
+      .playlist-titulo {
+        margin: 10px 0px;
+        align-self: flex-start;
+        font-weight: 700;
+        font-size: 0.7rem;
+        color: $preto-transparente-30;
+      }
+
+      .playlist-scroll {
         width: 100%;
 
-        &.flex {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+        max-height: calc(95vh - $h-desconsiderar);
+        overflow: auto;
 
-        &.opcoes{
-            min-height: $h-menu-opcoes;
-        
-            flex-direction: column;
-            *{
-                margin-bottom: $m-entre-menus;
-            }
+        &::-webkit-scrollbar {
+          display: none;
         }
-
-        .playlist-titulo {
-            margin: 10px 0px;
-            align-self: flex-start;
-            font-weight: 700;
-            font-size: .7rem;
-            color: $preto-transparente-30;
+        * {
+          margin-bottom: $m-entre-menus;
         }
-
-        .playlist-scroll{
-            width: 100%;
-            *{margin-bottom: $m-entre-menus;}
-        }
+      }
     }
-}
+  }
+
+  .usuario-info {
+    flex-grow: 0;
+    display: block;
+    bottom: 0;
+    align-self: flex-end;
+    height: $h-footer-user;
+    width: 100%;
+  }
 }

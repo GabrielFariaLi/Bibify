@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faGuitar,
   faHome,
@@ -24,7 +25,7 @@ export class PainelEsquerdoComponent implements OnInit {
   artistaIcone = faGuitar;
   playlistIcone = faMusic;
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(private spotifyService: SpotifyService, private router: Router) {}
 
   ngOnInit(): void {
     this.buscarPlaylists();
@@ -32,6 +33,9 @@ export class PainelEsquerdoComponent implements OnInit {
 
   botaoClick(botao: string | undefined) {
     this.menuSelecionado = botao;
+
+    this.router.navigateByUrl(`/player/${botao?.toLowerCase()}`);
+    console.log(`/player/${botao?.toLowerCase()}`);
   }
 
   async buscarPlaylists() {

@@ -54,7 +54,7 @@ export class SpotifyService {
     const clientId = `client_id=${SpotifyConfiguration.clientId}&`;
     const redirectUrl = `redirect_uri=${SpotifyConfiguration.redirectUrl}&`;
     const scopes = `scope=${SpotifyConfiguration.scopes.join('%20')}&`;
-    const responseType = `response_type=token&show_dialog=true`;
+    const responseType = `response_type=code&show_dialog=true`;
     return authEndPoint + clientId + redirectUrl + scopes + responseType;
   }
   //login efetuado com sucesso agora usaremos o token gerado pelo spotify
@@ -69,6 +69,7 @@ export class SpotifyService {
 
   definirAcessToken(token: string) {
     this.spotifyApi?.setAccessToken(token);
+    console.log('chegamos no token', token);
     localStorage.setItem('token', token);
     //this.spotifyApi?.skipToNext();
   }

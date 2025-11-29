@@ -13,10 +13,11 @@ export class LoginComponent implements OnInit {
     this.veririficarTokenUrlCallback();
   }
 
-  veririficarTokenUrlCallback() {
-    const token = this.spotifyService.obterTokenUrlCallBack();
-    if (!!token) {
-      this.spotifyService.definirAcessToken(token);
+  async veririficarTokenUrlCallback() {
+    const tokenAuth = this.spotifyService.obterTokenUrlCallBack();
+    if (!!tokenAuth) {
+      const acess_token = await this.spotifyService.pegarAcessToken(tokenAuth);
+      this.spotifyService.definirAcessToken(acess_token);
 
       this.router.navigate(['/player/home']);
     }

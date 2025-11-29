@@ -52,10 +52,18 @@ export class SpotifyService {
   obterUrlLogin() {
     const authEndPoint = `${SpotifyConfiguration.authEndPoint}?`;
     const clientId = `client_id=${SpotifyConfiguration.clientId}&`;
+    const clientSecret = `client_secret=${SpotifyConfiguration.clientSecret}&`;
     const redirectUrl = `redirect_uri=${SpotifyConfiguration.redirectUrl}&`;
     const scopes = `scope=${SpotifyConfiguration.scopes.join('%20')}&`;
     const responseType = `response_type=code&show_dialog=true`;
-    return authEndPoint + clientId + redirectUrl + scopes + responseType;
+    return (
+      authEndPoint +
+      clientId +
+      clientSecret +
+      redirectUrl +
+      scopes +
+      responseType
+    );
   }
   //login efetuado com sucesso agora usaremos o token gerado pelo spotify
   obterTokenUrlCallBack() {
@@ -79,7 +87,9 @@ export class SpotifyService {
 
   definirAcessToken(token: string) {
     this.spotifyApi?.setAccessToken(token);
+    const testeToken = this.spotifyApi?.getAccessToken();
     console.log('chegamos no token', token);
+    console.log('chegamos no testeToken', testeToken);
     localStorage.setItem('token', token);
     //this.spotifyApi?.skipToNext();
   }

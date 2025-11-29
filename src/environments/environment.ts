@@ -4,6 +4,7 @@ export const environment = {
 
 export const SpotifyConfiguration = {
   clientId: '791a841385f34851a1b6649e8d208547',
+  clientSecret: 'fbebc80f4432403c84c0349650f67994',
   authEndPoint: 'https://accounts.spotify.com/authorize',
   redirectUrl: 'https://bibify.vercel.app/login/',
   scopes: [

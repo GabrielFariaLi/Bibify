@@ -90,6 +90,7 @@ export class SpotifyService {
 
     const params = new URLSearchParams();
     params.append('client_id', SpotifyConfiguration.clientId);
+    params.append('client_secret', SpotifyConfiguration.clientSecret);
     params.append('grant_type', 'authorization_code');
     params.append('code', code);
     params.append('redirect_uri', SpotifyConfiguration.redirectUrl);

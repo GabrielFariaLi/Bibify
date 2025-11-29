@@ -59,12 +59,22 @@ export class SpotifyService {
   }
   //login efetuado com sucesso agora usaremos o token gerado pelo spotify
   obterTokenUrlCallBack() {
-    if (!window.location.hash) {
+    const search = window.location.search;
+    if (!search) {
       return '';
     }
-    const params = window.location.hash.substring(1).split('&');
-    //console.log(params[0].split('=')[1]);
-    return params[0].split('=')[1];
+
+    const params = new URLSearchParams(search);
+    console.log(
+      '🚀 ~ SpotifyService ~ obterTokenUrlCallBack ~ params:',
+      params
+    );
+    console.log(
+      '🚀 ~ SpotifyService ~ obterTokenUrlCallBack ~ params:',
+      params.get('code')
+    );
+
+    return params.get('code') ?? '';
   }
 
   definirAcessToken(token: string) {
